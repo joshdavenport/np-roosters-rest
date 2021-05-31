@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import classnames from 'classnames';
 
 export default function Menu() {
@@ -6,19 +6,31 @@ export default function Menu() {
 
   const menuItems = [
     {
-      name: 'Lucky Ramen',
-      price: 125,
+      name: '🏔️ Mountain Meal 🏔️',
+      desc: 'Harvest + Ramen',
+      price: 225,
     },
     {
-      name: 'Seaman Special',
-      price: 200,
+      name: "🎣 Fisherman's Feast 🎣",
+      desc: 'Seaman + Ramen + Tea',
+      price: 325,
+    },
+    { divider: true },
+    {
+      name: '🍜 Lucky Ramen 🍜',
+      price: 100,
     },
     {
-      name: "Hunter's Harvest",
-      price: 200,
+      name: "🏹 Hunter's Harvest 🏹",
+      price: 150,
     },
     {
-      name: 'Fortune Tea',
+      name: '🍣 Seaman Special 🍣',
+      price: 150,
+    },
+    { divider: true },
+    {
+      name: '🍵 Fortune Tea 🍵',
       price: 100,
     },
   ];
@@ -33,11 +45,19 @@ export default function Menu() {
         </p>
       </div>
       <div className="menu__items">
-        {menuItems.map(({ name, price }) => (
-          <div className="menu-item" key={name}>
-            <div className="menu-item__name">{name}</div>
-            <div className="menu-item__price">${price}</div>
-          </div>
+        {menuItems.map(({ divider, name, price, desc }, i) => (
+          <Fragment key={i}>
+            {!divider && (
+              <div className="menu-item">
+                <div className="menu-item__name">
+                  <span>{name}</span>
+                  {desc && <div className="menu-item__desc">{desc}</div>}
+                </div>
+                <div className="menu-item__price">${price}</div>
+              </div>
+            )}
+            {divider && <hr />}
+          </Fragment>
         ))}
       </div>
     </div>

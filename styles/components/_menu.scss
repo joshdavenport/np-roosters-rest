@@ -10,6 +10,9 @@
 
   @include mq($from: xl) {
     margin-left: $page__spacing;
+    height: calc(#{'100vh - 150px'});
+    overflow: auto;
+    overscroll-behavior: contain;
   }
 
   @include mq($until: xl) {
@@ -64,27 +67,43 @@
 
       @include mq($from: xxl) {
         grid-template-columns: 1fr auto;
-        font-size: 2rem;
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
       }
 
-      @include mq($from: l, $until: xxl) {
+      @include mq($from: xl, $until: xxl) {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, auto);
         row-gap: 0px;
-        font-size: 1.3rem;
+        font-size: 1rem;
       }
 
-      @include mq($until: m) {
-        font-size: 1.8rem;
+      @include mq($until: xl) {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto;
+        font-size: 1.2rem;
       }
 
       &:not(:last-child) {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+      }
+
+      &__desc {
+        font-size: 0.6em;
       }
 
       &__price {
         color: $color__primary-black;
       }
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: $color__primary-black;
+      opacity: 0.5;
+      margin: -10px 0 20px;
+      padding: 0;
     }
   }
 }
