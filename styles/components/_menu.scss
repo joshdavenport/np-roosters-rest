@@ -1,0 +1,90 @@
+.menu {
+  $self: &;
+  position: sticky;
+  top: $border__size + $border__margin;
+  background-color: $color__primary-red;
+  background-image: url(/images/bg-blend-arches.png);
+  background-blend-mode: color-burn;
+  color: $color__primary-whitegrey;
+  padding: $page__spacing;
+
+  @include mq($from: xl) {
+    margin-left: $page__spacing;
+  }
+
+  @include mq($until: xl) {
+    cursor: pointer;
+
+    &:not(.active) {
+      :not(#{$self}__title) {
+        display: none;
+      }
+
+      #{$self}__title {
+        margin-bottom: 0;
+
+        &:after {
+          content: '+';
+        }
+      }
+    }
+
+    &__title {
+      &:after {
+        content: '-';
+        display: block;
+      }
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:after {
+      transform: scale(1.5);
+    }
+  }
+
+  &__copy {
+    @include mq($from: l, $until: xxl) {
+      max-width: 11em;
+    }
+  }
+
+  &__items {
+    margin-top: 40px;
+    font-family: $font__coda;
+    font-weight: 900;
+    text-transform: uppercase;
+
+    .menu-item {
+      display: grid;
+
+      @include mq($from: xxl) {
+        grid-template-columns: 1fr auto;
+        font-size: 2rem;
+      }
+
+      @include mq($from: l, $until: xxl) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+        row-gap: 0px;
+        font-size: 1.3rem;
+      }
+
+      @include mq($until: m) {
+        font-size: 1.8rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 30px;
+      }
+
+      &__price {
+        color: $color__primary-black;
+      }
+    }
+  }
+}

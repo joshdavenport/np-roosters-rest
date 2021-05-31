@@ -1,0 +1,52 @@
+@mixin mq-v(
+  $from: false,
+  $until: false,
+  $v-from: false,
+  $v-until: false,
+  $and: false,
+  $media-type: $mq-media-type,
+  $breakpoints: $mq-breakpoints,
+  $responsive: $mq-responsive,
+  $static-breakpoint: $mq-static-breakpoint
+) {
+  $min-height: 0;
+  $max-height: 0;
+  $v-and: '';
+
+  // From: this breakpoint (inclusive)
+  @if $v-from {
+    @if type-of($v-from) == number {
+      $min-height: mq-px2em($v-from);
+    } @else {
+      $min-height: mq-px2em(mq-get-breakpoint-width($v-from, $v-breakpoints));
+    }
+  }
+
+  // Until: that breakpoint (exclusive)
+  @if $v-until {
+    @if type-of($v-until) == number {
+      $max-height: mq-px2em($v-until);
+    } @else {
+      $max-height: mq-px2em(mq-get-breakpoint-width($v-until, $v-breakpoints)) - 0.01em;
+    }
+  }
+
+  @if $min-height != 0 {
+    $v-and: '#{$v-and} and (min-height: #{$min-height})';
+  }
+  @if $max-height != 0 {
+    $v-and: '#{$v-and} and (max-height: #{$max-height})';
+  }
+  @if $and {
+    $v-and: '#{$v-and} and #{$and}';
+  }
+
+  // Remove unnecessary media query prefix 'all and '
+  @if ($v-and != '') {
+    $v-and: str-slice(unquote($v-and), 6);
+  }
+
+  @include mq($from, $until, $v-and, $media-type, $breakpoints, $responsive, $static-breakpoint) {
+    @content;
+  }
+}

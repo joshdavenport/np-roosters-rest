@@ -1,0 +1,40 @@
+// MQ
+$size__xxs: 400px;
+$size__xs: 540px;
+$size__s: 660px;
+$size__m: 800px;
+$size__l: 980px;
+$size__xl: 1200px;
+$size__xxl: 1500px;
+
+$mq-breakpoints: (
+  xxs: $size__xxs,
+  xs: $size__xs,
+  s: $size__s,
+  m: $size__m,
+  l: $size__l,
+  xl: $size__xl,
+  xxl: $size__xxl,
+);
+
+$v-breakpoints: (
+  s: 680px,
+  m: 825px,
+);
+
+// Colors
+$color__primary-black: rgba(20, 21, 18, 1);
+$color__primary-red: rgba(196, 71, 61, 1);
+$color__primary-whitegrey: rgba(247, 247, 247, 1);
+
+// Fonts
+$font__coda: 'Coda', sans-serif;
+$font__federant: 'Federant', sans-serif;
+$font__fruktur: 'Fruktur', sans-serif;
+
+// Decorative order
+$border__size: 75px;
+$border__margin: 30px;
+
+// Spacing
+$page__spacing: 40px;

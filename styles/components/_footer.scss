@@ -1,0 +1,17 @@
+footer {
+  color: $color__primary-whitegrey;
+  opacity: 0.3;
+  display: flex;
+  align-items: center;
+  margin-top: $page__spacing * 3;
+  mix-blend-mode: lighten;
+  font-size: 0.8rem;
+
+  @include mq($until: m) {
+    padding-left: $page__spacing + 20px;
+  }
+
+  img {
+    margin-right: 0.5rem;
+  }
+}

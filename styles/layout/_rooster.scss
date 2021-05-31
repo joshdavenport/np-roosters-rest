@@ -1,0 +1,160 @@
+.rooster {
+  display: grid;
+  padding-right: $page__spacing;
+
+  @include mq($from: xxl) {
+    grid-template-columns: auto minmax(300px, 730px) minmax(36rem, 1fr);
+  }
+
+  @include mq($from: xl, $until: xxl) {
+    grid-template-columns: auto minmax(300px, 730px) minmax(22rem, 1fr);
+  }
+
+  @include mq($from: xl) {
+    grid-template-areas: 'logo primary menu';
+  }
+
+  @include mq($from: m, $until: xl) {
+    grid-template-areas:
+      'logo menu'
+      'logo primary';
+    grid-template-columns: auto 1fr;
+    column-gap: 100px;
+  }
+
+  @include mq($until: m) {
+    grid-template-areas:
+      'logo'
+      'menu'
+      'primary';
+    padding-left: $border__size + $border__margin;
+    padding-top: $border__size + $border__margin;
+  }
+
+  @include mq($from: m) {
+    padding-bottom: $page__spacing;
+  }
+
+  &__logo {
+    grid-area: logo;
+
+    @include mq($until: m) {
+      margin-bottom: $page__spacing * 0.6;
+    }
+  }
+
+  &__primary,
+  &__menu {
+    @include mq($until: xs) {
+      margin-left: -#{$border__size + $border__margin};
+      padding-left: $page__spacing;
+      background: transparentize($color__primary-black, 0.25);
+      z-index: 21;
+    }
+  }
+
+  &__primary {
+    grid-area: primary;
+
+    @include mq($from: xl) {
+      padding-top: $border__size + $border__margin;
+    }
+
+    @include mq($until: xl) {
+      padding-top: $page__spacing;
+    }
+
+    @include mq($until: m) {
+      padding-bottom: $page__spacing;
+    }
+
+    h1 {
+      display: grid;
+
+      @include mq-v($from: m, $v-until: m) {
+        font-size: 60px;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: repeat(2, auto);
+        column-gap: 0.3em;
+        justify-content: start;
+
+        span {
+          &:first-child {
+            grid-column: span 2;
+          }
+        }
+      }
+
+      @include mq-v($from: m, $v-from: m) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+        justify-content: end;
+        position: fixed;
+        transform-origin: 0% 0%;
+        transform: rotate(-90deg) translate(-100%, 0px);
+        text-align: right;
+        margin: 0;
+      }
+
+      @include mq-v($from: xl, $v-from: m) {
+        font-size: 80px;
+        left: 120px;
+        top: 420px;
+      }
+
+      @include mq-v($from: m, $until: xl, $v-from: m) {
+        font-size: 70px;
+        left: 120px;
+        top: 340px;
+      }
+
+      @include mq($until: m) {
+        position: absolute;
+        margin: 0;
+        font-size: 50px;
+      }
+
+      @include mq($from: s, $until: m) {
+        left: 360px;
+        top: $border__size + $border__margin + 60px;
+      }
+
+      @include mq($until: s) {
+        left: $border__size + $border__margin;
+        top: $border__size + $border__margin + 230px;
+        text-align: center;
+      }
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    > :not(:last-child) {
+      margin-bottom: $page__spacing;
+    }
+
+    > h2 {
+      color: $color__primary-whitegrey;
+      margin-top: $page__spacing * 2;
+    }
+
+    > img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__menu {
+    grid-area: menu;
+
+    @include mq($from: m) {
+      padding-top: $border__size + $border__margin;
+    }
+
+    @include mq($until: m) {
+      padding-top: $page__spacing;
+    }
+  }
+}

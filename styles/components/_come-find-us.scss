@@ -1,0 +1,24 @@
+.come-find-us {
+  background: $color__primary-red;
+  color: $color__primary-whitegrey;
+  font-family: $font__federant;
+  position: relative;
+
+  &__title {
+    color: $color__primary-black;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    text-shadow: 2px 2px 0px $color__primary-red;
+  }
+
+  &__image {
+    mix-blend-mode: luminosity;
+    clip-path: inset(0 0 3px 0);
+  }
+
+  &__address {
+    padding: #{$page__spacing * 0.5 - 5px} $page__spacing #{$page__spacing * 0.5};
+  }
+}
